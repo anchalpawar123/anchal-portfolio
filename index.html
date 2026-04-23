@@ -1,0 +1,859 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <head> 
+    <title> Anchal Pawar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #16a34a;
+            --light: #f8fafc;
+            --dark: #1e293b;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1.5s ease-in-out;
+        }
+        
+        .project-card, .blog-card {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+     <!-- Navigation -->
+<header class="fixed w-full bg-white shadow-md z-50">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="#" class="text-2xl font-bold" style="color: var(--primary);"> Anchal Pawar</a>
+        
+        <div class="hidden md:flex space-x-8">
+            <a href="#home" class="text-gray-600 hover:text-blue-600 transition-colors">Home</a>
+            <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors">About</a>
+            <a href="#projects" class="text-gray-600 hover:text-blue-600 transition-colors">Projects</a>
+            <a href="#resume" class="text-gray-600 hover:text-blue-600 transition-colors">Resume</a>
+            <a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors">Contact</a>
+        </div>
+        
+        <!-- Mobile button -->
+        <button id="mobile-menu-button" class="md:hidden text-gray-600">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white py-4 px-6 shadow-lg">
+        <div class="flex flex-col space-y-4">
+            <a href="#home" class="text-gray-600 hover:text-blue-600 transition-colors">Home</a>
+            <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors">About</a>
+            <a href="#projects" class="text-gray-600 hover:text-blue-600 transition-colors">Projects</a>
+            <a href="#resume" class="text-gray-600 hover:text-blue-600 transition-colors">Resume</a>
+            <a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors">Contact</a>
+        </div>
+    </div>
+</header>
+
+<!-- WORKING SCRIPT -->
+<script>
+    const mobileBtn = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    mobileBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+    });
+</script>
+
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24" style="background-color: var(--light);">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm <span style="color: var(--secondary);"> Anchal Pawar</span></h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6" style="color: var(--primary);">Full Stack Web Developer And MERN Stack Developer</h2>
+                <p class="text-lg mb-8 max-w-lg">I create beautiful and functional websites with modern technologies. Passionate about clean code and user experience.</p>
+                <div class="flex space-x-4">
+                    <a href="#projects" class="px-6 py-3 rounded-lg font-medium shadow-lg transition-colors" style="background-color: var(--primary); color: white;">View My Work</a>
+                    <a href="#contact" class="border-2 px-6 py-3 rounded-lg font-medium transition-colors" style="border-color: var(--primary); color: var(--primary);">Contact Me</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+    <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-2xl">
+        
+        <!-- Profile Image -->
+        <img src="myphoto.png" 
+             alt="Profile Image" 
+             class="w-full h-full object-cover rounded-full">
+             
+    </div>
+</div>
+
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- About Section -->
+    <section id="about" class="py-16" style="background-color: #f0f9ff;">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold section-title">About Me</h2>
+            
+            <div class="flex flex-col md:flex-row gap-10">
+                <div class="md:w-2/3">
+                    <p class="text-lg mb-6"> I started my journey by learning C/C++, which helped me build a strong foundation in programming. Later, I moved into full-stack development using JavaScript. During this journey, I became well-acquainted with the MERN Stack by building and working on several real-world projects.</p>
+                    
+                     
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-md border-l-4" style="border-color: #16a34a;">
+                        <p class="text-lg italic"> "Creating solutions that inspire, impact, and make life easier."</p>
+                        <p class="mt-2 font-medium">—  Anchal Pawar</p>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/3">
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-semibold mb-4" style="color: #2563eb;">Education</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="border-l-4 pl-4" style="border-color: #2563eb;">
+                                <h4 class="font-semibold text-lg">B.Tech in Computer Science & Engineering</h4>
+                                <p class="text-blue-600 font-medium">Currently Pursuing</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--  technical skills  -->
+     <div class="max-w-6xl mx-auto">
+        
+        <!-- Skills Section -->
+        <div class="mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Technical Skills</h2>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+                <!-- HTML -->
+                <div class="skill-card bg-white rounded-xl shadow-md p-4 text-center border border-gray-100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 flex items-center justify-center bg-orange-50 rounded-lg">
+                        <i class="fab fa-html5 text-2xl md:text-4xl text-orange-500"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">HTML</h3>
+                </div>
+
+                <!-- CSS -->
+                <div class="skill-card bg-white rounded-xl shadow-md p-4 text-center border border-gray-100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 flex items-center justify-center bg-blue-50 rounded-lg">
+                        <i class="fab fa-css3-alt text-2xl md:text-4xl text-blue-500"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">CSS</h3>
+                </div>
+
+                <!-- Tailwind CSS -->
+                <div class="skill-card bg-white rounded-xl shadow-md p-4 text-center border border-gray-100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 flex items-center justify-center bg-cyan-50 rounded-lg">
+                        <i class="fab fa-css3-alt text-2xl md:text-4xl text-cyan-500"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">Tailwind CSS</h3>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="skill-card bg-white rounded-xl shadow-md p-4 text-center border border-gray-100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 flex items-center justify-center bg-yellow-50 rounded-lg">
+                        <i class="fab fa-js-square text-2xl md:text-4xl text-yellow-500"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">JavaScript</h3>
+                </div>
+
+                <!-- Node.js -->
+                <div class="skill-card bg-white rounded-xl shadow-md p-4 text-center border border-gray-100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 flex items-center justify-center bg-green-50 rounded-lg">
+                        <i class="fab fa-node-js text-2xl md:text-4xl text-green-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">Node.js</h3>
+                </div>
+
+                <!-- Express.js -->
+                <div class="skill-card bg-white rounded-xl shadow-md p-4 text-center border border-gray-100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 flex items-center justify-center bg-gray-100 rounded-lg">
+                        <i class="fas fa-server text-2xl md:text-4xl text-gray-700"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">Express.js</h3>
+                </div>
+
+                <!-- MongoDB -->
+                <div class="skill-card bg-white rounded-xl shadow-md p-4 text-center border border-gray-100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 flex items-center justify-center bg-green-50 rounded-lg">
+                        <i class="fas fa-database text-2xl md:text-4xl text-green-500"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">MongoDB</h3>
+                </div>
+
+                <!-- React -->
+                <div class="skill-card bg-white rounded-xl shadow-md p-4 text-center border border-gray-100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 flex items-center justify-center bg-blue-50 rounded-lg">
+                        <i class="fab fa-react text-2xl md:text-4xl text-blue-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">React</h3>
+                </div>
+
+                <!-- C -->
+                <div class="skill-card bg-white rounded-xl shadow-md p-4 text-center border border-gray-100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 flex items-center justify-center bg-blue-50 rounded-lg">
+                        <i class="fas fa-copyright text-2xl md:text-4xl text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">C</h3>
+                </div>
+
+                <!-- C++ -->
+                <div class="skill-card bg-white rounded-xl shadow-md p-4 text-center border border-gray-100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 flex items-center justify-center bg-purple-50 rounded-lg">
+                        <i class="fas fa-plus-square text-2xl md:text-4xl text-purple-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">C++</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tools Section -->
+        <div class="mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">Tools & Platforms</h2>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+                <!-- Git -->
+                <div class="tool-card bg-white rounded-xl shadow-md p-4 text-center border border-gray-100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 flex items-center justify-center bg-orange-50 rounded-lg">
+                        <i class="fab fa-git-alt text-2xl md:text-4xl text-orange-500"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">Git</h3>
+                </div>
+
+                <!-- GitHub -->
+                <div class="tool-card bg-white rounded-xl shadow-md p-4 text-center border border-gray-100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 flex items-center justify-center bg-gray-800 rounded-lg">
+                        <i class="fab fa-github text-2xl md:text-4xl text-white"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">GitHub</h3>
+                </div>
+
+                <!-- VS Code -->
+                <div class="tool-card bg-white rounded-xl shadow-md p-4 text-center border border-gray-100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 flex items-center justify-center bg-blue-50 rounded-lg">
+                        <i class="fas fa-code text-2xl md:text-4xl text-blue-500"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 text-sm md:text-base">VS Code</h3>
+                </div>
+
+
+                 <!-- Postman -->
+<div class="tool-card bg-white rounded-lg shadow-md p-4 text-center border border-gray-100">
+    <div class="w-12 h-12 mx-auto mb-2 flex items-center justify-center bg-orange-50 rounded-lg">
+        <img src="https://www.svgrepo.com/show/354202/postman-icon.svg" 
+             alt="Postman Logo" 
+             class="w-8 h-8">
+    </div>
+    <h3 class="font-semibold text-gray-800 text-sm">Postman</h3>
+</div>
+
+<!-- MongoDB Compass -->
+<div class="tool-card bg-white rounded-lg shadow-md p-4 text-center border border-gray-100">
+    <div class="w-12 h-12 mx-auto mb-2 flex items-center justify-center bg-green-50 rounded-lg">
+        <img src="https://www.svgrepo.com/show/331488/mongodb.svg" 
+             alt="MongoDB Logo" 
+             class="w-8 h-8">
+    </div>
+    <h3 class="font-semibold text-gray-800 text-sm">MongoDB Compass</h3>
+</div>
+
+            </div>
+        </div>
+
+         
+<!-- end -->
+     
+<!-- start -->
+   <div id="projects"   class="max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <!-- <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">My Recent Works</h2> -->
+             <div class="text-center mb-6">
+    <h2   class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">My Recent Works </h2>
+    <p class="text-xl text-gray-600"> Here are a few projects I've worked on recently.</p>
+</div>
+
+              <!-- <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800"> My Recent Works</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Here are a few projects I've worked on recently.</p> -->
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Project 1:  AmazonClone -->
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow">
+                <div class="h-48 bg-gradient-to-r from-white to-white flex items-center justify-center overflow-hidden">
+    <img src="amazon-cloneimg.png" alt="Image" class="h-full object-cover">
+</div>
+
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3"> Amazon Clone</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        A simple Amazon e-commerce clone with browsing, cart, and checkout features.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full">HTML</span>
+                        <span class="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full"> CSS</span>
+                         
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/anchalpawar123/-AmazonClone-Frontend-Only-" class="flex-1 bg-blue-600 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            <i class="fab fa-github mr-2"></i>GitHub
+                        </a>
+                        <a href="https://anchalpawar123.github.io/-AmazonClone-Frontend-Only-/" class="flex-1 bg-gray-800 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-gray-900 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- //2.
+            2 -->
+
+<div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow">
+                  <div class="h-48 bg-gradient-to-r from-white to-white flex items-center justify-center overflow-hidden">
+    <img src="uma.png" alt="Image" class="h-full object-cover">
+</div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">UMA Enterprises</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                  A clean and responsive personal portfolio built with HTML, CSS, and JavaScript to showcase my skills, projects, and resume
+            </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full">HTML</span>
+                        <span class="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full">CSS</span>
+                        <span class="text-xs bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">JavaScript</span>
+                        <!-- <span class="text-xs bg-purple-100 text-purple-700 px-3 py-1 rounded-full">React Native</span> -->
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/anchalpawar123/Uma-enterprice" class="flex-1 bg-blue-600 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            <i class="fab fa-github mr-2"></i>GitHub
+                        </a>
+                        <a href="https://anchalpawar123.github.io/Uma-enterprice/" class="flex-1 bg-gray-800 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-gray-900 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- //end 2 -->
+            <!-- Project 2: Remote Placement Cell -->
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow">
+                  <div class="h-48 bg-gradient-to-r from-white to-white flex items-center justify-center overflow-hidden">
+    <img src="plant1img.png" alt="Image" class="h-full object-cover">
+</div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Planet Enviro</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+               A sustainability-focused platform promoting environmental awareness and eco-friendly practices.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full">HTML</span>
+                        <span class="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full">CSS</span>
+                        <span class="text-xs bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">JavaScript</span>
+                        <!-- <span class="text-xs bg-purple-100 text-purple-700 px-3 py-1 rounded-full">React Native</span> -->
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/anchalpawar123/plantation-plant" class="flex-1 bg-blue-600 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            <i class="fab fa-github mr-2"></i>GitHub
+                        </a>
+                        <a href="https://anchalpawar123.github.io/plantation-plant/" class="flex-1 bg-gray-800 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-gray-900 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Remote Placement Cell -->
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow">
+                  <div class="h-48 bg-gradient-to-r from-white to-white flex items-center justify-center overflow-hidden">
+    <img src="loanimg.png" alt="Image" class="h-full object-cover">
+</div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3"> MG Finserve</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                  A loan management platform that helps users apply, track, and manage loans with a smooth and transparent process
+            </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full">HTML</span>
+                        <span class="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full">CSS</span>
+                        <span class="text-xs bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">JavaScript</span>
+                        <!-- <span class="text-xs bg-purple-100 text-purple-700 px-3 py-1 rounded-full">React Native</span> -->
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/anchalpawar123/loan-webpage" class="flex-1 bg-blue-600 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            <i class="fab fa-github mr-2"></i>GitHub
+                        </a>
+                        <a href="https://anchalpawar123.github.io/loan-webpage/" class="flex-1 bg-gray-800 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-gray-900 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: Rock Paper Scissor -->
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow">
+                 <div class="h-48 bg-gradient-to-r from-white to-white flex items-center justify-center overflow-hidden">
+    <img src="imagengo.png" alt="Image" class="h-full object-cover">
+</div>
+
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">NGO Sakar Sewa </h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                         A dedicated NGO website designed to support social causes, showcase ongoing initiatives, and connect people who want to contribute towards positive change.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded-full">HTML</span>
+                        <span class="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full">CSS</span>
+                        <span class="text-xs bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">JavaScript</span>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/anchalpawar123/Ngo--webpage" class="flex-1 bg-blue-600 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            <i class="fab fa-github mr-2"></i>GitHub
+                        </a>
+                        <a href="https://anchalpawar123.github.io/Ngo--webpage/" class="flex-1 bg-gray-800 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-gray-900 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+<!-- Project 3: Remote Placement Cell -->
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow">
+                  <div class="h-48 bg-gradient-to-r from-white to-white flex items-center justify-center overflow-hidden">
+    <img src="plan2img.png" alt="Image" class="h-full object-cover">
+</div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Water Treatment Consultancy </h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                  A water awareness platform focused on conservation, clean water solutions, and promoting responsible water usage.
+                </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full">HTML</span>
+                        <span class="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full">CSS</span>
+                        <span class="text-xs bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">JavaScript</span>
+                        <!-- <span class="text-xs bg-purple-100 text-purple-700 px-3 py-1 rounded-full">React Native</span> -->
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/anchalpawar123/plant-made-web" class="flex-1 bg-blue-600 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            <i class="fab fa-github mr-2"></i>GitHub
+                        </a>
+                        <a href="https://anchalpawar123.github.io/plant-made-web/" class="flex-1 bg-gray-800 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-gray-900 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+         
+ <!-- 4 project -->
+
+  <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow">
+                <div class="h-48 bg-gradient-to-r from-white to-white flex items-center justify-center overflow-hidden">
+    <img src="nodues.png" alt="Image" class="h-full object-cover">
+</div>
+
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Your Dues</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        <!-- A simple Amazon e-commerce clone with browsing, cart, and checkout features. -->
+                    Ensures all dues are cleared across departments before approval.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full">HTML</span>
+                        <span class="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full"> CSS</span>
+                         <span class="text-xs bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">JavaScript</span>
+  
+  <span class="text-xs bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full">React</span>
+  <span class="text-xs bg-purple-100 text-purple-700 px-3 py-1 rounded-full">Node.js</span>
+  <span class="text-xs bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full">Express.js</span>
+  <span class="text-xs bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">MongoDB</span>
+
+  <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full">REST API</span>
+  <span class="text-xs bg-pink-100 text-pink-700 px-3 py-1 rounded-full">JWT Auth</span>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/anchalpawar123/Your-Dues" class="flex-1 bg-blue-600 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            <i class="fab fa-github mr-2"></i>GitHub
+                        </a>
+                        <!-- <a href="https://anchalpawar123.github.io/-AmazonClone-Frontend-Only-/" class="flex-1 bg-gray-800 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-gray-900 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>Demo
+                        </a> -->
+                        <a href="https://drive.google.com/file/d/1PU8vif2_oQfxUmPqakUzl4LDL2tw3168/view?usp=sharing" target="_blank"
+   class="flex-1 bg-gray-800 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-gray-900">
+  <i class="fas fa-play mr-2"></i>Watch Demo
+</a>
+                    </div>
+                </div>
+            </div>
+
+<!-- 6 portfolio -->
+          <!-- <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow">
+                  <div class="h-48 bg-gradient-to-r from-white to-white flex items-center justify-center overflow-hidden">
+    <img src="myportfolioimg.png" alt="Image" class="h-full object-cover">
+</div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3"> Portfolio</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                  A clean and responsive personal portfolio built with HTML, CSS, and JavaScript to showcase my skills, projects, and resume
+            </p>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full">HTML</span>
+                        <span class="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full">CSS</span>
+                        <span class="text-xs bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">JavaScript</span>
+                        - <span class="text-xs bg-purple-100 text-purple-700 px-3 py-1 rounded-full">React Native</span> -->
+                    <!-- </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href=" " class="flex-1 bg-blue-600 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            <i class="fab fa-github mr-2"></i>GitHub
+                        </a>
+                        <a href=" " class="flex-1 bg-gray-800 text-white text-center py-2 px-4 rounded-lg font-medium hover:bg-gray-900 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>Demo
+                        </a>
+                    </div>
+                </div> -->
+            <!-- </div> --> 
+
+    </div>
+
+
+ <!-- internship section -->
+<section class="max-w-6xl mx-auto px-6 py-12">
+    <h2 class="text-3xl font-bold text-center mb-10">Internship Experience</h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+        <!-- Internship Card 1 -->
+        <div class="border rounded-2xl p-6 shadow-md hover:shadow-lg transition bg-white">
+            <div class="flex justify-between items-center">
+                <h3 class="text-2xl font-semibold text-green-600">Web Development Intern</h3>
+                <!-- <span class="bg-blue-600 text-white px-3 py-1 text-sm rounded-full">Paid</span> -->
+            </div>
+
+            <p class="text-gray-700 mt-1">Digital Success Solutions</p>
+
+            <div class="flex items-center gap-3 mt-2 text-sm text-gray-500">
+                <span class="bg-gray-200 px-2 py-1 rounded">Duration: 3 Months</span>
+                <span class="bg-gray-200 px-2 py-1 rounded">Certificate Available</span>
+            </div>
+
+            <ul class="list-disc ml-6 mt-4 text-gray-600 space-y-1">
+                <li>Built responsive web pages using HTML, CSS, JavaScript & Tailwind CSS</li>
+                <li>Worked on UI improvements and bug fixes</li>
+                <li>Collaborated with the frontend team</li>
+                <li>Designed reusable UI components using Tailwind CSS</li>
+                <li>Implemented mobile-friendly and responsive layouts</li>
+                <li>Used Git & GitHub for version control</li>
+            </ul>
+
+            <div class="mt-4 flex gap-4">
+                <button onclick="openModal('cert1')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                    Show Certificate
+                </button>
+
+                <a href="DSS internship Certificate Anchal (1).pdf" download 
+                   class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                    Download
+                </a>
+            </div>
+        </div>
+
+
+        <!-- Internship Card 2 -->
+        <div class="border rounded-2xl p-6 shadow-md hover:shadow-lg transition bg-white">
+            <div class="flex justify-between items-center">
+                <h3 class="text-2xl font-semibold text-green-600">Full Stack Developer  </h3>
+                <span class="bg-blue-600 text-white px-3 py-1 text-sm rounded-full">Paid</span>
+            </div>
+
+            <p class="text-gray-700 mt-1">Codec Technologies Pvt. Ltd. </p>
+
+            <div class="flex items-center gap-3 mt-2 text-sm text-gray-500">
+                <span class="bg-gray-200 px-2 py-1 rounded">Duration: 1 Months</span>
+                <span class="bg-gray-200 px-2 py-1 rounded">Certificate Available</span>
+            </div>
+
+             <ul class="list-disc ml-6 mt-4 text-gray-600 space-y-1">
+  <li>Designed reusable UI components using Tailwind CSS and React</li>
+  <li>Implemented mobile-friendly and responsive layouts for web applications</li>
+  <li>Developed RESTful APIs using Node.js and Express</li>
+  <li>Integrated frontend with backend using Axios / Fetch API</li>
+  <li>Worked with MongoDB for database design and CRUD operations</li>
+  <li>Implemented authentication and authorization (JWT / sessions)</li>
+  <li>Used Git & GitHub for version control and collaborative development</li>
+</ul>
+
+            <div class="mt-4 flex gap-4">
+                <button onclick="openModal('cert2')" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                    Show Certificate
+                </button>
+
+                <a href="certificate-codec.png" download
+                   class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                    Download
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- internship ends -->
+ <!-- ===== ACHIEVEMENTS SECTION START ===== -->
+<div id="achievements" class="max-w-6xl mx-auto mt-24">
+
+    <!-- Section Header -->
+    <div class="text-center mb-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800">My Achievements</h2>
+        <p class="text-xl text-gray-600">Here are some of my certificates and achievements</p>
+    </div>
+
+    <!-- Achievements Box -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+
+        <!-- Grid Images -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+
+    <div class="bg-gray-100 p-4 rounded-xl shadow-md flex items-center justify-center hover:scale-105 transition">
+        <img src="acivement1.png"
+             alt="Achievement"
+             class="w-full h-[420px] object-contain rounded-lg">
+    </div>
+
+    <div class="bg-gray-100 p-4 rounded-xl shadow-md flex items-center justify-center hover:scale-105 transition">
+        <img src="achivement2.jpeg"
+             alt="Achievement"
+             class="w-full h-[420px] object-contain rounded-lg">
+    </div>
+
+</div>
+    </div>
+</div>
+<!-- ===== ACHIEVEMENTS SECTION END ===== -->
+
+<!-- 🔥 FINAL CERTIFICATE MODAL (ONLY THIS ONE KEEP) -->
+<div id="certificateModal" class="fixed inset-0 bg-black bg-opacity-70 hidden justify-center items-center p-4">
+    <div class="bg-white rounded-xl p-4 max-w-4xl w-full max-h-[90vh] overflow-auto">
+        <h2 class="text-xl font-bold mb-3">Certificate Preview</h2>
+
+        <!-- PDF or Image Viewer -->
+        <div class="overflow-auto max-h-[75vh] border rounded-lg">
+            <iframe id="certificateFrame" class="w-full h-[75vh]" frameborder="0"></iframe>
+        </div>
+
+        <button onclick="closeModal()" class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-green-400-700">
+            Close
+        </button>
+    </div>
+</div>
+
+
+<!-- JS SCRIPT -->
+<script>
+    function openModal(cert) {
+        const modal = document.getElementById("certificateModal");
+        const frame = document.getElementById("certificateFrame");
+
+        if(cert === "cert1") {
+            frame.src = "DSS internship Certificate Anchal (1).pdf";
+        } else {
+            frame.src = "certificate-codec.png";
+        }
+
+        document.body.style.overflow = "hidden"; // page scroll lock
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("certificateModal");
+        document.body.style.overflow = "auto"; // restore scroll
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+    }
+</script>
+
+
+
+  <!-- start -->
+<div id="resume" class="max-w-6xl mx-auto mt-24">
+
+    <!-- Section Header -->
+    <div class="text-center mb-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800">My Resume</h2>
+        <p class="text-xl text-gray-600">Download my resume to learn more about my experience and skills</p>
+    </div>
+
+    <!-- Resume Box -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200">
+
+        <!-- Resume Image -->
+        <div class="w-full flex justify-center p-4">
+            <img src="final-resumes.png"
+                 alt="Resume"
+                 class="w-full max-w-sm md:max-w-xl lg:max-w-2xl rounded-xl shadow-lg object-contain">
+        </div>
+    </div>
+
+    <!-- Download Button -->
+    <div class="p-8 text-center bg-gray-50">
+        <button id="downloadBtn"
+         class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg text-lg">
+            <i class="fas fa-download mr-3"></i>
+            Download Resume PDF
+        </button>
+        <p class="text-sm text-gray-500 mt-3">File size: 2.1 MB</p>
+    </div>
+</div>
+
+<script>
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+        const link = document.createElement('a');
+        link.href = 'Anchalresume.pdf'; 
+        link.download = 'Anchalresume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+</script>
+
+
+<!-- Summary Section -->
+<section class="py-16">
+<!-- <h1 class="text-4xl font-bold text-center text-blue-600">Summary</h1> -->
+  <h2 class="text-3xl md:text-4xl text-center font-bold text-gray-800"> Summary</h2>
+
+<!-- <p class="text-center mt-4 text-lg text-green-600">
+ 
+</p> -->
+<p class="text-xl text-center text-gray-600">I build useful websites, learn fast, and love teaching others. </p>
+    
+
+<div class="max-w-5xl mx-auto mt-10 grid md:grid-cols-2 gap-10 items-center px-6">
+<!-- Text -->
+<div>
+<p class="text-xl font-semibold mb-4">Hi there,</p>
+<p class=" text-xl text-center text-gray-600 text-justify">
+ I am a self-motivated learner and a growing web developer with hands-on experience in building real-world projects. I enjoy designing clean interfaces, writing efficient code, and continuously improving my skills.
+</p>
+</div>
+
+
+<!-- Image -->
+<div class="flex justify-center">
+<img src="myphoto.png" alt="Profile" class="w-56 h-56 rounded-full shadow-lg border-4 border-green-500" />
+</div>
+</div>
+</section>
+
+
+<!-- Social Section -->
+<section id="contact" class="text-center py-12">
+<h2 class="text-3xl font-bold text-black">FIND ME ON</h2>
+<p class="text-gray-700 mb-6">Feel free to connect with me.</p>
+
+
+<div class="flex justify-center gap-6">
+ <div class="flex justify-center gap-6">
+    <a href="https://github.com/anchalpawar123" class="bg-blue-600 text-white p-4 rounded-full hover:bg-blue-700 transition">
+        <i class="fa-brands fa-github text-2xl"></i>
+    </a>
+
+    <a href="https://www.linkedin.com/in/anchal-pawar-87507b293/" class="bg-green-600 text-white p-4 rounded-full hover:bg-green-700 transition">
+        <i class="fa-brands fa-linkedin text-2xl"></i>
+    </a>
+
+    <a href="" class="bg-blue-600 text-white p-4 rounded-full hover:bg-blue-700 transition">
+        <i class="fa-brands fa-instagram text-2xl"></i>
+    </a>
+
+    <a href="#" class="bg-green-600 text-white p-4 rounded-full hover:bg-green-700 transition">
+        <i class="fa-brands fa-facebook text-2xl"></i>
+    </a>
+</div>
+
+</div>
+</section>
+
+
+<footer class="text-center py-4 border-t mt-10 text-gray-600">
+Designed & Developed by Anchal Pawar © 2025
+</footer>
+ 
+ 
+</html>
+ 
